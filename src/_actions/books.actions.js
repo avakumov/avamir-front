@@ -139,7 +139,7 @@ function getAll() {
                 dispatch(successCategory(categoriesBooks))
                 //history.push('/')
             },
-            (error) => dispatch(failure(error))
+            (error) => dispatch(failureCategory(error))
         )
     }
 
@@ -154,6 +154,10 @@ function getAll() {
     function successCategory(categoriesBooks) {
         return { type: booksConstants.GETALL_CATEGORY_BOOKS_SUCCESS,
             categoriesBooks }
+    }
+
+    function failureCategory(error) {
+        return { type: booksConstants.GETALL_CATEGORY_BOOKS_FAILURE, error }
     }
 
     function success(books) {

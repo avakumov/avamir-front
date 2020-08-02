@@ -56,8 +56,15 @@ export function books(state = initState, action) {
         case booksConstants.GETALL_CATEGORY_BOOKS_SUCCESS:
             return {
                 ...state,
+                loadingCategory: false,
                 categories: action.categoriesBooks,
             }
+            case booksConstants.GETALL_CATEGORY_BOOKS_FAILURE:
+                return {
+                    ...state,
+                    loadingCategory: false,
+                    getAllCategoriesError: action.error,
+                }
         case booksConstants.ADD_CATEGORY_BOOKS_REQUEST:
             return {
                 ...state,

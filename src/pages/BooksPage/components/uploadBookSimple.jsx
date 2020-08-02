@@ -39,7 +39,6 @@ const UploadBookSimple = ({ categoryId, addBook, addingBook, setMenuItemId }) =>
         formData.set('title', file.title)
         formData.set('category', categoryId)
         addBook(formData)
-        setMenuItemId('0')
     }
 
     const handlerFileSelected = () => {
