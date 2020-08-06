@@ -20,11 +20,10 @@ const App = () => {
                 <NavBar menuItems={MENU_ITEMS} />
                 <AuthContainer />
                 <Switch>
+                    
                     <PrivateRoute exact path="/" component={BooksPage} />
                     <PrivateRoute path="/blog" component={BlogApp} />
-
                     <Route exact path="/sapper-page" component={SapperPage} />
-                    <Route path="*" component={NotFoundPage} />
                 </Switch>
             </Router>
         </div>
