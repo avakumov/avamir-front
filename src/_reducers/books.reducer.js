@@ -59,12 +59,12 @@ export function books(state = initState, action) {
                 loadingCategory: false,
                 categories: action.categoriesBooks,
             }
-            case booksConstants.GETALL_CATEGORY_BOOKS_FAILURE:
-                return {
-                    ...state,
-                    loadingCategory: false,
-                    getAllCategoriesError: action.error,
-                }
+        case booksConstants.GETALL_CATEGORY_BOOKS_FAILURE:
+            return {
+                ...state,
+                loadingCategory: false,
+                getAllCategoriesError: action.error,
+            }
         case booksConstants.ADD_CATEGORY_BOOKS_REQUEST:
             return {
                 ...state,
@@ -124,29 +124,28 @@ export function books(state = initState, action) {
                 patchingBookError: action.error,
             }
 
-            case booksConstants.PATCH_CATEGORYBOOKS_REQUEST:
-                return {
-                    ...state,
-                    patchingCategoryBooks: true,
-                }
-            case booksConstants.PATCH_CATEGORYBOOKS_SUCCESS:
-                const copyCategories = [...state.categories]
-                const idx = copyCategories.findIndex(
-                    (c) => c._id === action.category._id
-                )
-                copyCategories[idx] = action.category
-                return {
-                    ...state,
-                    patchingCategoryBooks: false,
-                    categories: copyCategories,
-                }
-            case booksConstants.PATCH_CATEGORYBOOKS_FAILURE:
-                return {
-                    ...state,
-                    patchingCategoryBooks: false,
-                    patchingCategoryBooksError: action.error,
-                }
-
+        case booksConstants.PATCH_CATEGORYBOOKS_REQUEST:
+            return {
+                ...state,
+                patchingCategoryBooks: true,
+            }
+        case booksConstants.PATCH_CATEGORYBOOKS_SUCCESS:
+            const copyCategories = [...state.categories]
+            const idx = copyCategories.findIndex(
+                (c) => c._id === action.category._id
+            )
+            copyCategories[idx] = action.category
+            return {
+                ...state,
+                patchingCategoryBooks: false,
+                categories: copyCategories,
+            }
+        case booksConstants.PATCH_CATEGORYBOOKS_FAILURE:
+            return {
+                ...state,
+                patchingCategoryBooks: false,
+                patchingCategoryBooksError: action.error,
+            }
 
         case booksConstants.DELETE_BOOK_REQUEST:
             return {

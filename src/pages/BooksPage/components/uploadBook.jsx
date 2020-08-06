@@ -63,9 +63,7 @@ const UploadBook = ({ categories, addBook, addingBook, setMenuItemId }) => {
     const refFile = useRef(null)
 
     if (!categories || categories.length === 0) {
-        return (
-            <div>Добавьте сначала категорию</div>
-        )
+        return <div>Добавьте сначала категорию</div>
     }
 
     if (addingBook || !categories) return <Loading />

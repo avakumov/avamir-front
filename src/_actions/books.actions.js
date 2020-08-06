@@ -4,14 +4,13 @@ import { booksService } from '../_services'
 
 export const booksActions = {
     getAll,
-    addBook, 
+    addBook,
     setMenuItemId,
     deleteCategoryBooks,
     addCategoryBooks,
     patchBook,
     deleteBook,
-    patchCategoryBooks
-
+    patchCategoryBooks,
 }
 
 function patchBook(book) {
@@ -35,7 +34,6 @@ function patchBook(book) {
     }
 }
 
-
 function patchCategoryBooks(category) {
     return (dispatch) => {
         dispatch(request())
@@ -56,7 +54,6 @@ function patchCategoryBooks(category) {
         return { type: booksConstants.PATCH_CATEGORYBOOKS_FAILURE, error }
     }
 }
-
 
 function addCategoryBooks(category) {
     return (dispatch) => {
@@ -125,7 +122,7 @@ function getAll() {
     return (dispatch) => {
         dispatch(request())
         dispatch(requestCategory())
-    
+
         booksService.getAllBooks().then(
             (books) => {
                 dispatch(success(books))
@@ -152,8 +149,10 @@ function getAll() {
     }
 
     function successCategory(categoriesBooks) {
-        return { type: booksConstants.GETALL_CATEGORY_BOOKS_SUCCESS,
-            categoriesBooks }
+        return {
+            type: booksConstants.GETALL_CATEGORY_BOOKS_SUCCESS,
+            categoriesBooks,
+        }
     }
 
     function failureCategory(error) {
@@ -167,7 +166,6 @@ function getAll() {
         return { type: booksConstants.GETALL_BOOKS_FAILURE, error }
     }
 }
-
 
 function addBook(formData) {
     return (dispatch) => {

@@ -27,10 +27,9 @@ const CategoryBooks = ({ category, patchCategory, deleteCategory }) => {
     }
 
     const patchCategoryBooks = () => {
-        patchCategory({...category, title: title})
+        patchCategory({ ...category, title: title })
         setEdit(false)
     }
-        
 
     return (
         <Category key={category._id}>

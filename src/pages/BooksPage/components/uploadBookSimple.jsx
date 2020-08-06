@@ -8,7 +8,6 @@ const M = styled.div`
     background-color: white;
 `
 
-
 const InputBook = styled.input`
     display: none;
 `
@@ -27,7 +26,12 @@ const LabelFile = styled.label`
     cursor: pointer;
 `
 
-const UploadBookSimple = ({ categoryId, addBook, addingBook, setMenuItemId }) => {
+const UploadBookSimple = ({
+    categoryId,
+    addBook,
+    addingBook,
+    setMenuItemId,
+}) => {
     const [file, setFile] = useState({ title: '', filename: null })
 
     const titleRef = useRef('')
@@ -86,7 +90,7 @@ const UploadBookSimple = ({ categoryId, addBook, addingBook, setMenuItemId }) =>
                                     onChange={handlerFileSelected}
                                 />
                             </td>
-                        </tr>            
+                        </tr>
 
                         <tr>
                             <td style={{ textAlign: 'right' }}>

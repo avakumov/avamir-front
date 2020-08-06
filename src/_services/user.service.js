@@ -4,7 +4,7 @@ import { API_URL } from '../constants'
 export const userService = {
     login,
     logout,
-    register
+    register,
 }
 
 function login(email, password) {
@@ -24,24 +24,23 @@ function login(email, password) {
         })
 }
 
-
-function register({username, email, password}) {
-    const dataReq = {name: username, email, password}
-    return axios.post(`${API_URL}/auth/register`, dataReq).then((res) => {
-
-        const {message}  = res.data
-        return message
-    }).catch(error => {
-        return Promise.reject(error.response.data.error);
-    })
-    
+function register({ username, email, password, passwordRepeat }) {
+    const dataReq = { name: username, email, password, passwordRepeat }
+    return axios
+        .post(`${API_URL}/auth/register`, dataReq)
+        .then((res) => {
+            const { message } = res.data
+            return message
+        })
+        .catch((error) => {
+            return Promise.reject(error.response.data.error)
+        })
 }
 
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user')
 }
-
 
 function handleResponse(response) {
     return response.text().then((text) => {

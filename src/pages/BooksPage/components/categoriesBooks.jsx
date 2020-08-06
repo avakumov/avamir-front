@@ -4,22 +4,30 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import CategoryBooks from './categoryBooks'
 
-
 const InputTitle = styled.input`
-    width: 203px;
+    width: 204px;
     font-weight: bold;
     font-family: 'pragmata-pro';
     border: 1px solid #ccc;
 `
 
+const FlexRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+`
 
-const CategoriesBooks = ({ categories, addCategory, patchCategory, deleteCategory }) => {
-
+const CategoriesBooks = ({
+    categories,
+    addCategory,
+    patchCategory,
+    deleteCategory,
+}) => {
     const [title, setTitle] = useState('')
 
     const handlerAddCategory = (e) => {
         e.preventDefault()
-        addCategory({title: title})
+        addCategory({ title: title })
     }
 
     const onHandlerChange = (e) => {
@@ -34,7 +42,7 @@ const CategoriesBooks = ({ categories, addCategory, patchCategory, deleteCategor
                 method="post"
                 encType="multipart/form-data"
             >
-                <div>
+                <FlexRow>
                     <InputTitle
                         type="text"
                         value={title}
@@ -50,13 +58,13 @@ const CategoriesBooks = ({ categories, addCategory, patchCategory, deleteCategor
                             add
                         </span>
                     </button>
-                </div>
+                </FlexRow>
             </form>
 
             {categories
                 ? categories.map((c) => (
                       <CategoryBooks
-                      key={c._id}
+                          key={c._id}
                           category={c}
                           patchCategory={patchCategory}
                           deleteCategory={deleteCategory}
@@ -79,7 +87,8 @@ const mapDispatchToProps = (dispatch) => {
         addCategory: (category) =>
             dispatch(booksActions.addCategoryBooks(category)),
         deleteCategory: (id) => dispatch(booksActions.deleteCategoryBooks(id)),
-        patchCategory: (category) => dispatch(booksActions.patchCategoryBooks(category))
+        patchCategory: (category) =>
+            dispatch(booksActions.patchCategoryBooks(category)),
     }
 }
 

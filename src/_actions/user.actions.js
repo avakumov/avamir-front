@@ -6,7 +6,7 @@ export const userActions = {
     login,
     logout,
     getAll,
-    register
+    register,
 }
 
 function login(email, password) {
@@ -37,19 +37,21 @@ function login(email, password) {
     }
 }
 
-function register({username, email, password}) {
+function register({ username, email, password, passwordRepeat }) {
     return (dispatch) => {
         dispatch(request({ username }))
 
-        userService.register({username, email, password}).then(
-            (message) => {
-                dispatch(success(message))
-            },
-            (error) => {
-                dispatch(failure(error))
-                //dispatch(alertActions.error(error));
-            }
-        )
+        userService
+            .register({ username, email, password, passwordRepeat })
+            .then(
+                (message) => {
+                    dispatch(success(message))
+                },
+                (error) => {
+                    dispatch(failure(error))
+                    //dispatch(alertActions.error(error));
+                }
+            )
     }
 
     function request(username) {
@@ -67,8 +69,6 @@ function logout() {
     userService.logout()
     return { type: userConstants.LOGOUT }
 }
-
-
 
 function getAll() {
     return (dispatch) => {

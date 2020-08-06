@@ -9,13 +9,13 @@ import Login from './login'
 import Register from './register'
 
 const menuItems = [
-    { title: 'Login', id: '0' },
-    { title: 'Register', id: '1' },
+    { title: 'Login', _id: '0' },
+    { title: 'Register', _id: '1' },
 ]
 
 const Main = styled.div`
     margin: 20px auto;
-    max-width: 350px;
+    width: 450px;
     display: flex;
     flex-direction: column;
     line-height: 100%;
@@ -23,6 +23,8 @@ const Main = styled.div`
     background-color: skyblue;
     justify-content: center;
     align-items: center;
+    justify-content: flex-start;
+    height: 250px;
 `
 
 const AuthContainer = ({
@@ -103,8 +105,15 @@ function mapDispatchToProps(dispatch) {
     return {
         login: (username, password) =>
             dispatch(userActions.login(username, password)),
-        register: ({username, email, password}) =>
-            dispatch(userActions.register({username, email, password})),
+        register: ({ username, email, password, passwordRepeat }) =>
+            dispatch(
+                userActions.register({
+                    username,
+                    email,
+                    password,
+                    passwordRepeat,
+                })
+            ),
     }
 }
 

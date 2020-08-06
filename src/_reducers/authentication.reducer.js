@@ -22,7 +22,7 @@ export function authentication(state = initialState, action) {
             return {
                 ...state,
                 loggingIn: false,
-                loginError: action.error
+                loginError: action.error,
             }
         case userConstants.LOGOUT:
             return {}
@@ -31,23 +31,21 @@ export function authentication(state = initialState, action) {
                 ...state,
                 registerRequest: true,
                 registerMessage: null,
-                registerError: null
-
+                registerError: null,
             }
         case userConstants.REGISTER_SUCCESS:
             return {
                 ...state,
                 registerRequest: false,
                 registerMessage: action.message,
-                registerError: null
-                
+                registerError: null,
             }
         case userConstants.REGISTER_FAILURE:
             return {
                 ...state,
                 registerRequest: false,
                 registerError: action.error,
-                registerMessage: null
+                registerMessage: null,
             }
         default:
             return state

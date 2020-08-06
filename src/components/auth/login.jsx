@@ -1,23 +1,70 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+
+import { API_URL } from '../../constants'
 
 const Input = styled.input`
     width: 180px;
     font-weight: bold;
     font-family: 'pragmata-pro';
     border: 1px solid #ccc;
+    padding-left: 0.3rem;
+`
+const Error = styled.div`
+    color: gray;
+    padding: 3px;
+`
+const ErrorLogin = styled.div`
+    color: darkred;
+    padding: 3px;
 `
 
-const Error = styled.div`
-    background-color: red;
-    border: 1px solid black;
-    padding: 3px;
+const BlockMessages = styled.div`
+    min-height: 2rem;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
+const M = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 const Login = ({ handleLogin, loginError }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [validationError, setvalidationError] = useState('')
+
+    useEffect(() => validateServer({ username, password }), [
+        username,
+        password,
+    ])
+
+    const validateServer = ({ username, password }) => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: username,
+                password,
+            }),
+        }
+        fetch(`${API_URL}/utils/validate-login`, requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.error) {
+                    setvalidationError(data.error)
+                } else {
+                    setvalidationError('')
+                }
+            })
+            .catch((err) => {
+                setvalidationError('Ошибка сервера!')
+            })
+    }
 
     const handleChangeName = (e) => {
         setUsername(e.target.value)
@@ -28,12 +75,15 @@ const Login = ({ handleLogin, loginError }) => {
     }
 
     const handleSubmit = () => {
-        handleLogin({username, password})
+        handleLogin({ username, password })
     }
 
     return (
-        <div>
-            {loginError ? <Error>{loginError}</Error> : ''}
+        <M>
+            <BlockMessages>
+                {loginError ? <ErrorLogin>{loginError}</ErrorLogin> : ''}
+                {validationError ? <Error>{validationError}</Error> : ''}
+            </BlockMessages>
 
             <table>
                 <tbody>
@@ -76,7 +126,7 @@ const Login = ({ handleLogin, loginError }) => {
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </M>
     )
 }
 

@@ -86,7 +86,12 @@ const EditBook = ({ deleteBook, book, patchBook, setEditBook }) => {
                     className="button-danger"
                     onClick={() => handlerDeleteBook(book._id)}
                 >
-                    <span className="material-icons" style={{fontSize: '15px'}} >delete_outline</span>
+                    <span
+                        className="material-icons"
+                        style={{ fontSize: '15px' }}
+                    >
+                        delete_outline
+                    </span>
                 </button>
             </Buttons>
         </M>

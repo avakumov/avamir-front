@@ -7,7 +7,7 @@ import { userActions } from '../../_actions'
 
 //menuItems [{to, title},...]
 const NavBar = ({ menuItems, user, dispatch, loggedIn }) => {
-    const username = user && user.name ? user.name.toUpperCase()  : 'Guest'
+    const username = user && user.name ? user.name.toUpperCase() : 'Guest'
     const [activeItem, setActiveItem] = useState(0)
     const changeCurrentItem = (id) => {
         setActiveItem(id)
@@ -17,12 +17,14 @@ const NavBar = ({ menuItems, user, dispatch, loggedIn }) => {
         dispatch(userActions.logout())
     }
 
-    useEffect( () => {
-        const activeItemMenu = menuItems.find(item => window.location.pathname === item.to)
+    useEffect(() => {
+        const activeItemMenu = menuItems.find(
+            (item) => window.location.pathname === item.to
+        )
         if (activeItemMenu) {
             setActiveItem(activeItemMenu.id)
         }
-    },[menuItems])
+    }, [menuItems])
 
     const links = menuItems.map((item) => {
         let classes = 'item-navbar hvr-underline-from-left'
@@ -36,7 +38,7 @@ const NavBar = ({ menuItems, user, dispatch, loggedIn }) => {
                 className={classes}
                 onClick={() => changeCurrentItem(item.id)}
             >
-                {item.title}
+                <b>{item.title}</b>
             </Link>
         )
     })
@@ -44,18 +46,18 @@ const NavBar = ({ menuItems, user, dispatch, loggedIn }) => {
         <div className="main-navbar">
             <div className="main-itesms-navbar">{links}</div>
             <div className="login-navbar paper">
-
-                
                 {username}
 
-                {loggedIn?
-                <img
-                    src={logoutImg}
-                    onClick={handleLogout}
-                    className="image-navbar-logout"
-                    alt="logout"
-                />
-                :''}
+                {loggedIn ? (
+                    <img
+                        src={logoutImg}
+                        onClick={handleLogout}
+                        className="image-navbar-logout"
+                        alt="logout"
+                    />
+                ) : (
+                    ''
+                )}
             </div>
         </div>
     )

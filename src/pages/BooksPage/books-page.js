@@ -15,16 +15,19 @@ const M = styled.div`
 const Books = ({ categories, getAll, activeMenuItemId, setMenuItemId }) => {
     useEffect(() => {
         getAll()
-        setMenuItemId("0")
+        setMenuItemId('0')
     }, [getAll, setMenuItemId])
 
     const getMenuWithCategories = (items, categories) => {
-        const changedCategories = categories.map( category => {
-            return {title: category.title, id: category._id}
+        const changedCategories = categories.map((category) => {
+            return { title: category.title, _id: category._id }
         })
-        return [...items.slice(0,1), ...changedCategories, ...items.slice(1,3)]
+        return [
+            ...items.slice(0, 1),
+            ...changedCategories,
+            ...items.slice(1, 3),
+        ]
     }
-
 
     return (
         <M>
@@ -45,7 +48,7 @@ const mapStateToProps = (state) => {
     return {
         books,
         activeMenuItemId,
-        categories
+        categories,
     }
 }
 

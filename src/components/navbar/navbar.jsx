@@ -15,7 +15,14 @@ const NavItem = styled.div`
         props.active ? props.colorActiveItem : props.colorItem};
 `
 
+const Name = styled.div`
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    padding: 5px 10px 5px 10px;
+`
+
 const Navbar = ({
+    name,
     menuItems,
     activeMenuItemId,
     setMenuItemId,
@@ -27,27 +34,28 @@ const Navbar = ({
         setMenuItemId(id)
     }
 
-    const links = menuItems.map((item) => {
+    const links = menuItems.map(({ title, _id: id }) => {
         let active = false
 
-        if (item.id === activeMenuItemId) {
+        if (id === activeMenuItemId) {
             active = true
         }
         return (
             <NavItem
                 active={active}
-                key={item.id}
-                onClick={() => changeCurrentItem(item.id)}
+                key={id}
+                onClick={() => changeCurrentItem(id)}
                 colorActiveItemText={colorActiveItemText}
                 colorActiveItem={colorActiveItem}
             >
-                {item.title}
+                {title}
             </NavItem>
         )
     })
 
     return (
         <Main className="paper" direction={direction}>
+            <Name>{name}</Name>
             {links}
         </Main>
     )
