@@ -126,7 +126,6 @@ function getAll() {
         booksService.getAllBooks().then(
             (books) => {
                 dispatch(success(books))
-                //history.push('/')
             },
             (error) => dispatch(failure(error))
         )
@@ -134,7 +133,6 @@ function getAll() {
         booksService.getCategoriesBooks().then(
             (categoriesBooks) => {
                 dispatch(successCategory(categoriesBooks))
-                //history.push('/')
             },
             (error) => dispatch(failureCategory(error))
         )

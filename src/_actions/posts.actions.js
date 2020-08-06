@@ -1,6 +1,6 @@
 import { postsConstants } from '../_constants'
 import { postsService } from '../_services'
-//import {history} from '../_helpers'
+import {history} from '../_helpers'
 
 export const postsActions = {
     getAllPosts,
@@ -16,7 +16,6 @@ function getAllPosts() {
         postsService.getAllPosts().then(
             (posts) => {
                 dispatch(success(posts))
-                //history.push('/blog')
             },
             (error) => dispatch(failure(error))
         )
@@ -41,7 +40,7 @@ function patchPost(post) {
         postsService.patchPost(post).then(
             (post) => {
                 dispatch(success(post))
-                window.location.replace('/blog')
+                history.push('/blog')
             },
             (error) => dispatch(failure(error))
         )
@@ -65,7 +64,7 @@ function deletePost(id) {
         postsService.deletePost(id).then(
             (post) => {
                 dispatch(success(post))
-                window.location.replace('/blog')
+                history.push('/blog')
             },
             (error) => dispatch(failure(error))
         )
@@ -89,8 +88,7 @@ function addPost(post) {
         postsService.addPost(post).then(
             (post) => {
                 dispatch(success(post))
-                window.location.replace('/blog')
-                //history.push('/blog')
+                history.push('/blog')
             },
             (error) => dispatch(failure(error))
         )

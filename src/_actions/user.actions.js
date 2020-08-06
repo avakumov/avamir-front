@@ -17,7 +17,7 @@ function login(email, password) {
             (user) => {
                 dispatch(success(user))
                 history.push('/')
-                window.location.reload(false)
+                //window.location.reload(false)
             },
             (error) => {
                 dispatch(failure(error))
@@ -49,7 +49,6 @@ function register({ username, email, password, passwordRepeat }) {
                 },
                 (error) => {
                     dispatch(failure(error))
-                    //dispatch(alertActions.error(error));
                 }
             )
     }

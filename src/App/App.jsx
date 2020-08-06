@@ -1,6 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
+import {history} from '../_helpers'
 
 import { PrivateRoute } from '../_components'
 import { AuthContainer } from '../components/auth/auth-container'
@@ -16,7 +17,7 @@ import './app.css'
 const App = () => {
     return (
         <div className="app">
-            <Router>
+            <Router history={history}>
                 <NavBar menuItems={MENU_ITEMS} />
                 <AuthContainer />
                 <Switch>
