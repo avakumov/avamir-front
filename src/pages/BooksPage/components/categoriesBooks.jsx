@@ -28,6 +28,7 @@ const CategoriesBooks = ({
     const handlerAddCategory = (e) => {
         e.preventDefault()
         addCategory({ title: title })
+        setTitle('')
     }
 
     const onHandlerChange = (e) => {

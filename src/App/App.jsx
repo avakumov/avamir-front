@@ -11,7 +11,7 @@ import NavBar from '../components/main-navbar/main-navbar'
 import SapperPage from '../pages/SapperPage/sapper-page'
 import { MENU_ITEMS } from '../constants'
 import NotFoundPage from '../pages/NotFound/not-found-page'
-
+import {TestAccountMessage} from '../components/test-account-message/test-account-message'
 import './app.css'
 
 const App = () => {
@@ -19,6 +19,7 @@ const App = () => {
         <div className="app">
             <Router history={history}>
                 <NavBar menuItems={MENU_ITEMS} />
+                <TestAccountMessage/>
                 <AuthContainer />
                 <Switch>
                     
